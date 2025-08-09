@@ -1,0 +1,367 @@
+
+/* ===== Global Mobile Styles ===== */
+@media only screen and (max-width: 768px) {
+    /* Base adjustments for all mobile devices */
+    body {
+        padding: 0;
+        font-size: 15px;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        touch-action: manipulation; /* improves touch responsiveness */
+    }
+    
+    /* Viewport reinforcement for iOS and Android */
+    @-ms-viewport {
+        width: device-width;
+    }
+    
+    /* Navigation - optimized for touch */
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    }
+    
+    .navbar li {
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .navbar a {
+        display: block;
+        padding: 12px 15px;
+        min-height: 44px; /* Apple touch target minimum */
+        display: flex;
+        align-items: center;
+    }
+    
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+    }
+    
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+        display: block;
+    }
+    
+    /* iPhone notch/punch-hole safe areas */
+    @supports (padding: max(0px)) {
+        body {
+            padding-left: max(15px, env(safe-area-inset-left));
+            padding-right: max(15px, env(safe-area-inset-right));
+            padding-top: max(15px, env(safe-area-inset-top));
+            padding-bottom: max(15px, env(safe-area-inset-bottom));
+        }
+    }
+    
+    /* Samsung foldable devices */
+    @media (screen-spanning: single-fold-vertical) {
+        .container {
+            width: calc(100% - env(fold-left) - env(fold-right));
+            margin-left: env(fold-left);
+        }
+    }
+    
+    /* Main content adjustments */
+    main {
+        padding: 10px;
+        padding-left: env(safe-area-inset-left, 10px);
+        padding-right: env(safe-area-inset-right, 10px);
+    }
+    
+    /* Project sections */
+    .project-listing {
+        padding: 0;
+        margin: 20px 0;
+    }
+    
+    .project-header {
+        padding: 15px;
+        padding-left: max(15px, env(safe-area-inset-left));
+    }
+    
+    .project-content {
+        padding: 15px;
+        padding-left: max(15px, env(safe-area-inset-left));
+    }
+    
+    /* Sponsor section */
+    .student-profiles {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .student-card {
+        margin-bottom: 15px;
+    }
+    
+    /* Forms and buttons - optimized for mobile */
+    input, select, textarea, button {
+        min-height: 44px; /* Apple touch target guideline */
+        font-size: 16px; /* Prevents iOS zooming */
+        -webkit-appearance: none; /* removes iOS shadow */
+        border-radius: 0; /* removes iOS rounded corners */
+    }
+    
+    /* Fix for iOS date inputs */
+    input[type="date"] {
+        min-height: 44px;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+    
+    /* Footer adjustments */
+    footer {
+        padding: 20px 10px;
+        flex-direction: column;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+    
+    /* Device-specific optimizations */
+    
+    /* iPhone Retina displays */
+    @media (-webkit-min-device-pixel-ratio: 2),
+           (min-resolution: 192dpi) {
+        body {
+            -webkit-font-smoothing: antialiased;
+        }
+    }
+    
+    /* Samsung Internet browser fixes */
+    _:-ms-fullscreen, :root .navbar a {
+        padding: 14px 15px; /* slightly larger for Samsung */
+    }
+    
+    /* iOS Safari viewport height fix */
+    @supports (-webkit-touch-callout: none) {
+        .full-height-mobile {
+            height: -webkit-fill-available;
+        }
+    }
+}
+
+/* ===== Small Mobile Devices (iPhone SE, Galaxy A series etc) ===== */
+@media only screen and (max-width: 475px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .project-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Hide decorative elements on small screens */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Make tables scrollable */
+    .responsive-table {
+        overflow-x: auto;
+        display: block;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+    }
+    
+    /* iPhone 5/SE specific */
+    @media (device-height: 568px) and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+        body {
+            font-size: 14px;
+        }
+        
+        .navbar a {
+            padding: 10px 12px;
+        }
+    }
+    
+    /* Galaxy Fold specific */
+    @media (max-width: 280px) {
+        body {
+            font-size: 13px;
+        }
+        
+        h1 {
+            font-size: 1.4rem;
+        }
+        
+        .navbar {
+            padding: 0 5px;
+        }
+    }
+    
+    /* Samsung Z Flip series */
+    @media (max-height: 672px) and (max-width: 330px) {
+        .project-header {
+            padding: 10px;
+        }
+    }
+}
+
+/* ===== Device-Specific Enhancements ===== */
+
+/* iPhone X/XS/11 Pro/12 Mini/13 Mini (tall screens) */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3),
+       only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2),
+       only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+    .navbar {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    footer {
+        padding-bottom: calc(30px + env(safe-area-inset-bottom));
+    }
+}
+
+/* Samsung Galaxy S20/S21/S22 Ultra */
+@media (min-width: 412px) and (max-width: 414px) and (min-height: 846px) and (max-height: 916px) {
+    .project-content {
+        padding: 20px;
+    }
+    
+    .student-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* iPad and Tablet in portrait */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .student-profiles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .project-listing {
+        margin: 25px 0;
+    }
+}
+
+/* High DPI devices (iPhone 4+, Samsung Galaxy S4+) */
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (min-resolution: 144dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    
+    .navbar a {
+        font-weight: 500; /* better readability on high DPI */
+    }
+}
+
+/* Samsung Internet browser scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+/* iOS momentum scrolling */
+.overflow-scrolling {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent iOS text size adjust after orientation change */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* ===== Updated Mobile Breakpoints ===== */
+
+/* Small phones (iPhone SE, Galaxy A series, etc.) */
+@media only screen and (max-width: 374px) {
+    /* Styles for very small screens */
+}
+
+/* Standard phones (iPhone 6/7/8, most Android) */
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+    /* Styles for standard mobile devices */
+}
+
+/* Large phones (iPhone X/11/12/13, Galaxy S/Note) */
+@media only screen and (min-width: 412px) and (max-width: 767px) {
+    /* Special styles for larger phones like Galaxy S20 */
+    body {
+        font-size: 16px; /* Slightly larger text */
+    }
+    
+    .navbar {
+        padding: 0 15px; /* More spacious navigation */
+    }
+    
+    .project-listing {
+        margin: 25px 0; /* More breathing room */
+    }
+}
+
+/* Tablets and small laptops */
+@media only screen and (min-width: 768px) {
+    /* Tablet styles */
+}
+
+/* ===== Galaxy S20 Specific Adjustments ===== */
+@media only screen 
+    and (min-device-width: 412px) 
+    and (max-device-width: 412px) 
+    and (min-device-height: 915px) 
+    and (-webkit-min-device-pixel-ratio: 3) {
+    
+    /* Specific optimizations for S20 */
+    .hero-section {
+        padding: 30px 0;
+    }
+    
+    .student-profiles {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on larger phone */
+    }
+    
+    /* Adjust font sizes */
+    h1 {
+        font-size: 2rem;
+    }
+    
+    /* Make buttons slightly larger */
+    .btn {
+        padding: 12px 24px;
+    }
+}
+
+/* ===== High-DPI Device Adjustments ===== */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    /* Crisper images and text */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+    
+    body {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* ===== Orientation Handling ===== */
+@media (orientation: portrait) {
+    /* Portrait-specific styles */
+}
+
+@media (orientation: landscape) {
+    /* Landscape-specific styles for phones */
+    @media (max-width: 915px) {
+        .navbar {
+            flex-direction: row;
+        }
+    }
+}
